@@ -9,8 +9,9 @@ module P2met
     end
 
     post '/submit' do
-      librato_user  = params[:librato_user] || ENV['LIBRATO_USER']
-      librato_token = params[:librato_token] || ENV['LIBRATO_TOKEN']
+      librato_user  = params[:librato_user]    || ENV['LIBRATO_USER']
+      librato_token = params[:librato_token]   || ENV['LIBRATO_TOKEN']
+      librato_prefix = params[:librato_prefix] || ENV['LIBRATO_PREFIX']
 
       client = Librato::Metrics::Client.new
       client.authenticate(librato_user.to_s.strip, librato_token.to_s.strip)
@@ -27,7 +28,13 @@ module P2met
         
         next unless data[:at] == 'metric'
         
-        queue.add data[:measure] => {
+        if librato_prefix
+          name = "#{librato_prefix}.#{data[:measure]}"
+        else
+          name = data[:measure]
+        end
+
+        queue.add name => {
           :source       => dyno,
           :value        => data[:val],
           :measure_time => time.to_i,
