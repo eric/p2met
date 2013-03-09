@@ -20,7 +20,7 @@ module P2met
       queue = client.new_queue
 
       payload['events'].each do |event|
-        time = Time.zone.at(Time.iso8601(event['received_at']))
+        time = Time.iso8601(event['received_at'])
         dyno = event['program'][%r{.*?/(.*)$}, 1]
         
         data = Scrolls::Parser.parse(event['message'])
