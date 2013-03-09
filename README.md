@@ -7,12 +7,14 @@ and send them to Librato Metrics.
 
 ### Step 1: Create a heroku app
 
-    $ heroku create -s cedar
+    $ git clone https://github.com/eric/p2met
+    $ cd p2met
+    $ heroku create
+    $ git push heroku master
 
 ### Step 2: Set your Librato Metrics API credentials (Optional)
 
     $ heroku config:add LIBRATO_USER=someguy@something.com LIBRATO_TOKEN=69fd475972db19b6c2ee1f68d08acff1c4bcbf5b
-
 
 ### Step 3: Create a Papertrail webhook
 
