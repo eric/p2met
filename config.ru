@@ -10,4 +10,4 @@ Bundler.require :default
 
 require 'app'
 
-run PapertrailL2metWebhook::App.new
+run P2met::App.new
