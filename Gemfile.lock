@@ -1,9 +1,6 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (3.2.12)
-      i18n (~> 0.6)
-      multi_json (~> 1.0)
     addressable (2.3.3)
     aggregate (0.2.2)
     excon (0.16.10)
@@ -19,7 +16,6 @@ GEM
       rubyzip
     heroku-api (0.3.8)
       excon (~> 0.16.10)
-    i18n (0.6.4)
     launchy (2.2.0)
       addressable (~> 2.3)
     librato-metrics (1.0.3)
@@ -51,7 +47,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activesupport
   foreman
   heroku
   librato-metrics

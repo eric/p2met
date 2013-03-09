@@ -5,7 +5,6 @@ source 'https://rubygems.org'
 gem 'sinatra'
 gem 'yajl-ruby'
 gem 'librato-metrics'
-gem 'activesupport'
 gem 'scrolls'
 
 gem 'puma'
