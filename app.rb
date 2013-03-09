@@ -39,7 +39,12 @@ module P2met
           :value        => data[:val],
           :measure_time => time.to_i,
           :type         => 'gauge',
-          :attributes   => { :source_aggregate => true }
+          :attributes   => {
+            :source_aggregate => true,
+            :display_min => 0,
+            :display_units_short => data[:units],
+            :display_units_long => data[:units]
+          }
         }
       end
 
