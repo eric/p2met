@@ -1,5 +1,6 @@
 require 'yajl'
 require 'librato/metrics'
+require 'sinatra'
 require 'scrolls'
 
 module P2met

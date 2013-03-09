@@ -5,9 +5,7 @@ unless $LOAD_PATH.include? "."
   $LOAD_PATH.unshift File.expand_path(File.dirname(__FILE__))
 end
 
-require 'bundler'
-Bundler.require :default
-
+require 'bundler/setup'
 require 'app'
 
 run P2met::App.new
