@@ -1,7 +1,9 @@
 # Papertrail l2met-style webhook
 
-A simple webhook to take l2met-styled messages (generally logged from heroku) 
-and send them to Librato Metrics.
+A simple webhook to take [l2met-styled messages][l2met] (generally logged from
+Heroku) and send them to Librato Metrics.
+
+[l2met]: https://github.com/ryandotsmith/l2met
 
 ## Deploying
 
