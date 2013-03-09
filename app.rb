@@ -15,7 +15,7 @@ module P2met
       client = Librato::Metrics::Client.new
       client.authenticate(librato_user.to_s.strip, librato_token.to_s.strip)
 
-      payload = HashWithIndifferentAccess.new(Yajl::Parser.parse(params[:payload]))
+      payload = Yajl::Parser.parse(params[:payload])
       
       queue = client.new_queue
 
