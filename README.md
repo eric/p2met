@@ -16,6 +16,10 @@ Heroku) and send them to Librato Metrics.
 
 ### Step 2: Set your Librato Metrics API credentials (Optional)
 
+    $ heroku addons:add librato
+    
+or 
+    
     $ heroku config:add LIBRATO_USER=someguy@something.com LIBRATO_TOKEN=69fd475972db19b6c2ee1f68d08acff1c4bcbf5b
 
 ### Step 3: Create a Papertrail webhook
