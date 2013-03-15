@@ -22,20 +22,17 @@ module P2met
       queue = client.new_queue
 
       payload['events'].each do |event|
-        time = Time.iso8601(event['received_at'])
-        dyno = event['program'][%r{.*?/(.*)$}, 1]
-
         data = Scrolls::Parser.parse(event['message'])
+        next unless valid_data?(data)
 
-        next unless data[:at] == 'metric'
+        time   = Time.iso8601(event['received_at'])
+        dyno   = event['program'][%r{.*?/(.*)$}, 1]
+        metric = [ librato_prefix,
+                   event['source_name'],
+                   data[:measure]
+                 ].compact.join('.')
 
-        if librato_prefix
-          name = "#{librato_prefix}.#{data[:measure]}"
-        else
-          name = data[:measure]
-        end
-
-        queue.add name => {
+        queue.add metric => {
           :source       => dyno,
           :value        => data[:val],
           :measure_time => time.to_i,
@@ -44,7 +41,7 @@ module P2met
             :source_aggregate => true,
             :display_min => 0,
             :display_units_short => data[:units],
-            :display_units_long => data[:units]
+            :display_units_long  => data[:units]
           }
         }
       end
@@ -52,6 +49,10 @@ module P2met
       queue.submit
 
       'ok'
+    end
+
+    def valid_data?(data)
+      data.has_key?(:measure) and data.has_key?(:val)
     end
   end
 end
