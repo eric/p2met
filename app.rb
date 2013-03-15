@@ -18,17 +18,17 @@ module P2met
       client.authenticate(librato_user.to_s.strip, librato_token.to_s.strip)
 
       payload = Yajl::Parser.parse(params[:payload])
-      
+
       queue = client.new_queue
 
       payload['events'].each do |event|
         time = Time.iso8601(event['received_at'])
         dyno = event['program'][%r{.*?/(.*)$}, 1]
-        
+
         data = Scrolls::Parser.parse(event['message'])
-        
+
         next unless data[:at] == 'metric'
-        
+
         if librato_prefix
           name = "#{librato_prefix}.#{data[:measure]}"
         else
