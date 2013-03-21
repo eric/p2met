@@ -19,6 +19,13 @@ add-ons.
     $ heroku addons:add papertrail
     $ heroku addons:add librato
 
+The biggest advantage to using p2met is to track the load and memory usage of
+your Heroku apps. Add the `log-runtime-metrics` Heroku Labs feature to have
+access to these metrics.
+
+    $ heroku labs:enable log-runtime-metrics
+    $ heroku restart
+
 ### Step 1: Create a new Heroku app
 
     $ git clone https://github.com/eric/p2met
